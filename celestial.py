@@ -137,26 +137,25 @@ R3[0] = (x3[0]**2 + y3[0]**2)**.5
 V3[0] = (u3[0]**2 + v3[0]**2)**.5
 A3[0] = (ax3[0]**2 + ay3[0]**2)**.5
 
+def update_force(m1,x1,y1,m2,x2,y2,G):
+    r12 = ((x2-x1)**2 + (y2-y1)**2)**.5
+    u12x = (x2-x1)/r12
+    u12y = (y2-y1)/r12
+    F12 =  G*m1*m2/(r12**2)
+    return (r12, u12x, u12y, F12)
+
 
 # Loop Time!
 for i in range(n):
+
     #update the force between objects 1 + 2
-    r12 = ((x2[i]-x1[i])**2 + (y2[i]-y1[i])**2)**.5
-    u12x = (x2[i]-x1[i])/r12
-    u12y = (y2[i]-y1[i])/r12
-    F12 =  G*m1*m2/(r12**2)
+    r12, u12x, u12y, F12 = update_force(m1,x1[i],y1[i],m2,x2[i],y2[i],G)
 
     #update the force between objects 1 + 3
-    r13 = ((x3[i]-x1[i])**2 + (y3[i]-y1[i])**2)**.5
-    u13x = (x3[i]-x1[i])/r13
-    u13y = (y3[i]-y1[i])/r13
-    F13 =  G*m1*m3/(r13**2)
+    r13, u13x, u13y, F13 = update_force(m1,x1[i],y1[i],m3,x3[i],y3[i],G)
 
     #update the force between objects 2 + 3
-    r23 = ((x3[i]-x2[i])**2 + (y3[i]-y2[i])**2)**.5
-    u23x = (x3[i]-x2[i])/r23
-    u23y = (y3[i]-y2[i])/r23
-    F23 =  G*m2*m3/(r23**2)
+    r23, u23x, u23y, F23 = update_force(m2,x2[i],y2[i],m3,x3[i],y3[i],G)
     
     #update Object 1
     # force acting on Object 1
@@ -200,7 +199,7 @@ for i in range(n):
     x3[i+1] = x3[i] + u3[i]*deltat
     y3[i+1] = y3[i] + v3[i]*deltat
 
-
+""
 # Visualize Results
 fig, ax = plt.subplots()
 line1 = ax.plot(x1,y1)
@@ -211,7 +210,7 @@ line3 = ax.plot(x3,y3)
 scat3 = ax.scatter(x3,y3)
 ax.axis('equal')
 plt.show()
-
+"""
 
 
 
@@ -246,3 +245,4 @@ def update(frame):
 
 ani = animation.FuncAnimation(fig=fig, func=update, frames=n, interval=.0001)
 plt.show()
+"""
