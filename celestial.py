@@ -144,6 +144,16 @@ def update_force(m1,x1,y1,m2,x2,y2,G):
     F12 =  G*m1*m2/(r12**2)
     return (r12, u12x, u12y, F12)
 
+def update_position(m,x,y,u,v,Fx,Fy,deltat):    
+    ax = Fx/m
+    ay = Fy/m
+    
+    u_new = u + ax*deltat
+    v_new = v + ay*deltat
+    
+    x_new = x + u_new*deltat
+    y_new = y + v_new*deltat
+    return (x_new, y_new, u_new, v_new)
 
 # Loop Time!
 for i in range(n):
@@ -157,6 +167,40 @@ for i in range(n):
     #update the force between objects 2 + 3
     r23, u23x, u23y, F23 = update_force(m2,x2[i],y2[i],m3,x3[i],y3[i],G)
     
+        #update Object 1
+    # total force acting on Object 1
+    Fx1[i] = F12*(u12x) + F13*(u13x)
+    Fy1[i] = F12*(u12y) + F13*(u13y)
+    #updated position
+    x1[i+1], y1[i+1], u1[i+1], v1[i+1] = update_position(m1,
+                                                         x1[i],y1[i],
+                                                         u1[i],v1[i],
+                                                         Fx1[i],Fy1[i],
+                                                         deltat)
+    
+    #Update object 2
+    # total force acting on Object 2
+    Fx2[i] = F12*(-u12x) + F23*(u23x)
+    Fy2[i] = F12*(-u12y) + F23*(u23y)
+    #updated position
+    x2[i+1], y2[i+1], u2[i+1], v2[i+1] = update_position(m2,
+                                                         x2[i],y2[i],
+                                                         u2[i],v2[i],
+                                                         Fx2[i],Fy2[i],
+                                                         deltat)
+
+    #Update object 3
+    # force acting on Object 3
+    Fx3[i] = F13*(-u13x) + F23*(-u23x)
+    Fy3[i] = F13*(-u13y) + F23*(-u23y)
+    #updated position
+    x3[i+1], y3[i+1], u3[i+1], v3[i+1] = update_position(m3,
+                                                         x3[i],y3[i],
+                                                         u3[i],v3[i],
+                                                         Fx3[i],Fy3[i],
+                                                         deltat)
+    
+    """"
     #update Object 1
     # force acting on Object 1
     Fx1[i] = F12*(u12x) + F13*(u13x)
@@ -198,8 +242,9 @@ for i in range(n):
     
     x3[i+1] = x3[i] + u3[i]*deltat
     y3[i+1] = y3[i] + v3[i]*deltat
+    """
 
-""
+
 # Visualize Results
 fig, ax = plt.subplots()
 line1 = ax.plot(x1,y1)
