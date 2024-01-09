@@ -1,0 +1,5 @@
+Name,Mass (kg),Radius (m),Density (kg/m^3),Gravity (m/s^2),Escape Velocity (m/s),Rotation Period (hours),Length of Day (hours),Orbital Radius (m),Perihelion (m),Aphelion (m),Orbital Period (days),Orbital Velocity (m/s),Orbital Inclination (degrees),Orbital Eccentricity,Obliquity to Orbit (degrees),Number of Moons,Ring System?,Global Magnetic Field?,
+Sun,1.989e30,6.96e8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,No,Yes,
+Mercury,3.30e23,2.44e6,5429,3.7,4.30E+03,1407.6,4222.6,5.79E+10,4.60E+10,6.98E+10,88,4.74E+04,7,0.206,0.034,0,No,Yes,
+Venus,4.87e24,6.052e6,5243,8.9,1.04E+04,-5832.5,2802,1.08E+11,1.08E+11,1.09E+11,224.7,3.50E+04,3.4,0.007,177.4,0,No,No,
+Earth,5.97e24,6.378e6,5514,9.8,1.12E+04,23.9,24,1.50E+11,1.47E+11,1.52E+11,365.2,2.98E+04,0,0.017,23.4,1,No,Yes,
